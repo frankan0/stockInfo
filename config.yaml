@@ -1,0 +1,59 @@
+
+# system configuration
+system:
+  env: 'public'  # Change to "develop" to skip authentication for development mode
+  addr: 8888
+  db-type: 'mysql'
+  oss-type: 'local'    # 控制oss选择走本地还是 七牛等其他仓 自行增加其他oss仓可以在 server/utils/upload/upload.go 中 NewOss函数配置
+  use-redis: false     # 使用redis
+  use-multipoint: false
+  # IP限制次数 一个小时15000次
+  iplimit-count: 15000
+  #  IP限制一个小时
+  iplimit-time: 3600
+
+# zap logger configuration
+zap:
+  level: 'info'
+  format: 'console'
+  prefix: '[go-spider]'
+  director: 'log'
+  show-line: true
+  encode-level: 'LowercaseColorLevelEncoder'
+  stacktrace-key: 'stacktrace'
+  log-in-console: true
+
+# redis configuration
+redis:
+  db: 0
+  addr: '127.0.0.1:6379'
+  password: ''
+
+# mysql connect configuration
+mysql:
+  path: 'localhost'
+  port: '3306'
+  config: 'charset=utf8'
+  db-name: 'irecord'
+  username: 'root'
+  password: 'qwer1234'
+  max-idle-conns: 10
+  max-open-conns: 100
+  log-mode: ""
+  log-zap: false
+
+
+db-list:
+  - disabled: true # 是否启用
+    type: "mysql" # 数据库的类型,目前支持mysql、pgsql
+    alias-name: "" # 数据库的名称,注意: alias-name 需要在db-list中唯一
+    path: ''
+    port: ''
+    config: ''
+    db-name: ''
+    username: ''
+    password: ''
+    max-idle-conns: 10
+    max-open-conns: 100
+    log-mode: ""
+    log-zap: false

@@ -3,19 +3,23 @@ module api.frank.top/spider
 go 1.18
 
 require (
+	github.com/fsnotify/fsnotify v1.5.1
 	github.com/gocolly/colly v1.2.0
+	github.com/natefinch/lumberjack v2.0.0+incompatible
 	github.com/spf13/viper v1.10.1
 	go.uber.org/zap v1.21.0
+	gorm.io/driver/mysql v1.3.2
 	gorm.io/gorm v1.23.3
 )
 
 require (
+	github.com/BurntSushi/toml v1.0.0 // indirect
 	github.com/PuerkitoBio/goquery v1.8.0 // indirect
 	github.com/andybalholm/cascadia v1.3.1 // indirect
 	github.com/antchfx/htmlquery v1.2.4 // indirect
 	github.com/antchfx/xmlquery v1.3.10 // indirect
 	github.com/antchfx/xpath v1.2.0 // indirect
-	github.com/fsnotify/fsnotify v1.5.1 // indirect
+	github.com/go-sql-driver/mysql v1.6.0 // indirect
 	github.com/gobwas/glob v0.2.3 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
@@ -41,5 +45,6 @@ require (
 	google.golang.org/appengine v1.6.7 // indirect
 	google.golang.org/protobuf v1.28.0 // indirect
 	gopkg.in/ini.v1 v1.66.2 // indirect
+	gopkg.in/natefinch/lumberjack.v2 v2.0.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 )

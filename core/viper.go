@@ -6,8 +6,6 @@ import (
 	"flag"
 	"fmt"
 	"os"
-	"path/filepath"
-	"time"
 	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/viper"
 )

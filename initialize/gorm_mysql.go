@@ -1,15 +1,14 @@
-package init
+package initialize
 
 import (
+	"api.frank.top/spider/config"
 	"api.frank.top/spider/global"
-	"api.frank.top/spider/init/internal"
+	"api.frank.top/spider/initialize/internal"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
 
 // GormMysql 初始化Mysql数据库
-// Author [piexlmax](https://github.com/piexlmax)
-// Author [SliverHorn](https://github.com/SliverHorn)
 func GormMysql() *gorm.DB {
 	m := global.GVA_CONFIG.Mysql
 	if m.Dbname == "" {

@@ -1,8 +1,7 @@
-package init
+package initialize
 
 import (
 	"api.frank.top/spider/global"
-	"os"
 	"gorm.io/gorm"
 )
 
