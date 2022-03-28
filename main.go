@@ -92,7 +92,7 @@ func csvSave(fName string, data []model.Wall) error {
 	}
 	defer file.Close()
 	writer := csv.NewWriter(file)
-	defer writer.Flush()
+	defer writer()
 
 	writer.Write([]string{"Date", "Title", "Link", "PicName"})
 	for _, v := range data {
