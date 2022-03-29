@@ -26,7 +26,7 @@ func (w *WallCollector) Start()  {
 	//	Parallelism: 2,
 	//	RandomDelay: 5 * time.Second,
 	//})
-	walls := make([]model.Wall,100)
+	walls := []model.Wall{}
 	c.OnHTML(".item div.card", func(element *colly.HTMLElement) {
 		wall := model.Wall{}
 		wall.Link = element.ChildAttr("img","src")
@@ -37,6 +37,9 @@ func (w *WallCollector) Start()  {
 		//去掉后面的
 		picNameArr :=strings.Split(httpArr[len(httpArr)-1],"_")
 		wall.PicName = picNameArr[0]+"_"+picNameArr[1]
+		if wall.PicName == "" {
+			return
+		}
 		walls = append(walls,wall)
 		if len(walls) >=200 {
 			saveData2db(walls)

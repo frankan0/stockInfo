@@ -34,7 +34,7 @@ mysql:
   path: 'localhost'
   port: '3306'
   config: 'charset=utf8'
-  db-name: 'irecord'
+  db-name: 'dtabapi'
   username: 'root'
   password: 'qwer1234'
   max-idle-conns: 10
