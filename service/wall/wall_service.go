@@ -19,3 +19,11 @@ func (wallService *WallService) BatchAdd(walls []model.Wall)(err error)  {
 	err = global.GVA_DB.Create(&walls).Error
 	return err
 }
+
+func (wallService *WallService) BatchAddWeibo(walls []model.HotRank)(err error)  {
+	err = global.GVA_DB.Create(&walls).Error
+	return err
+}
+
+
+

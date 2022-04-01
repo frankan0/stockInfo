@@ -4,13 +4,46 @@ import (
 	"api.frank.top/spider/global"
 	"api.frank.top/spider/model"
 	"api.frank.top/spider/service"
+	"encoding/json"
 	"github.com/gocolly/colly"
 	"go.uber.org/zap"
+	"io/ioutil"
+	"net/http"
 	"strings"
 )
 
 type WallCollector struct {
 
+}
+
+func (w *WallCollector) BingToday() {
+	resp, err := http.Get("https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN")
+	if err != nil {
+		global.GVA_LOG.Error("获取bing今日壁纸接口失败")
+		return
+	}
+	defer resp.Body.Close()
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		global.GVA_LOG.Error("获取bing今日壁纸接口失败")
+		return
+	}
+	var bingWalls model.BingResponse
+	err = json.Unmarshal(body, &bingWalls)
+	if err!=nil {
+		global.GVA_LOG.Error("获取bing今日壁纸接口失败")
+		return
+	}
+	bingWall := bingWalls.Images[0]
+	//del head
+	nameArr := strings.Split(bingWall.Urlbase,".")
+	//入库
+	wall := model.Wall{}
+	wall.PicName= nameArr[1]
+	wall.Title = bingWall.Title
+	wall.Date = bingWall.Enddate
+	wall.Link = bingWall.Url
+	service.ServiceGroupApp.WallServiceGroup.AddWall(wall)
 }
 
 func (w *WallCollector) Start()  {

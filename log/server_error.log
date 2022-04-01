@@ -1,1 +1,5 @@
 [go-spider]2022/03/29 - 12:19:01.149	[31merror[0m	D:/dev/GitHub/bingSpider/collectors/wall_collector.go:75	insert batch wall error.
+[go-spider]2022/04/01 - 17:35:51.592	[31merror[0m	D:/dev/GitHub/bingSpider/collectors/weibo_hot.go:68	insert batch hots error.
+[go-spider]2022/04/01 - 17:49:22.397	[31merror[0m	D:/dev/GitHub/bingSpider/collectors/weibo_hot.go:68	insert batch hots error.	{"error": "Error 1146: Table 'dtabapi.hot_searches' doesn't exist"}
+[go-spider]2022/04/01 - 18:04:40.099	[31merror[0m	D:/dev/GitHub/bingSpider/collectors/weibo_hot.go:70	insert batch hots error.	{"error": "Error 1146: Table 'dtabapi.hot_ranks' doesn't exist"}
+[go-spider]2022/04/01 - 18:05:10.627	[31merror[0m	D:/dev/GitHub/bingSpider/collectors/weibo_hot.go:70	insert batch hots error.	{"error": "empty slice found"}
