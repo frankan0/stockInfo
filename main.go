@@ -15,10 +15,10 @@ func main() {
 	global.GVA_LOG = core.Zap()  // 初始化zap日志库
 	zap.ReplaceGlobals(global.GVA_LOG)
 	global.GVA_DB = initialize.Gorm() // gorm连接数据库
-	wallCollector := new(collectors.WallCollector)
-	wallCollector.BingToday()
-	//weiboCollector := new(collectors.WeiboCollector)
-	//weiboCollector.Start()
+	//wallCollector := new(collectors.WallCollector)
+	//wallCollector.BingToday()
+	weiboCollector := new(collectors.WeiboCollector)
+	weiboCollector.Start()
 
 }
 

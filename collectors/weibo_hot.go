@@ -4,7 +4,6 @@ import (
 	"api.frank.top/spider/global"
 	"api.frank.top/spider/model"
 	"api.frank.top/spider/service"
-	"fmt"
 	"github.com/gocolly/colly"
 	"go.uber.org/zap"
 	"time"
@@ -15,17 +14,9 @@ type WeiboCollector struct {
 }
 
 func (w *WeiboCollector) Start()  {
-	// Instantiate default collector
 	c := colly.NewCollector(
-		// Visit only domains: reddit.com
 		colly.UserAgent("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36"),
-		//colly.AllowedDomains("weibo.com"),
 	)
-	//c.Limit(&colly.LimitRule{
-	//	DomainGlob:  "*ioliu.*",
-	//	Parallelism: 2,
-	//	RandomDelay: 5 * time.Second,
-	//})
 	timeStr := time.Now().Format("20060102")
 	hots := []model.HotRank{}
 	c.OnHTML("table tbody tr", func(element *colly.HTMLElement) {
@@ -54,17 +45,11 @@ func (w *WeiboCollector) Start()  {
 		}
 
 	})
-
 	// Set error handler
 	c.OnError(func(r *colly.Response, err error) {
-		fmt.Println(err)
 		global.GVA_LOG.Info("Request URL: failed with response:",zap.String("url",r.Request.URL.String()))
 	})
-	c.OnResponse(func(r *colly.Response) {
-		fmt.Println(string(r.Body))
-	})
 	c.Visit("https://s.weibo.com/top/summary/summary")
-
 	if len(hots) >0 {
 		err :=service.ServiceGroupApp.WallServiceGroup.BatchAddWeibo(hots)
 		if err!=nil {

@@ -3,7 +3,7 @@
 system:
   env: 'public'  # Change to "develop" to skip authentication for development mode
   addr: 8888
-  db-type: 'mysql'
+  db-type: 'pgsql'
   oss-type: 'local'    # 控制oss选择走本地还是 七牛等其他仓 自行增加其他oss仓可以在 server/utils/upload/upload.go 中 NewOss函数配置
   use-redis: false     # 使用redis
   use-multipoint: false
@@ -29,23 +29,23 @@ redis:
   addr: '127.0.0.1:6379'
   password: ''
 
-# mysql connect configuration
-mysql:
+# pgsql connect configuration
+# 未初始化之前请勿手动修改数据库信息！！！如果一定要手动初始化请看（https://www.github.com/flipped-aurora/gin-vue-admin/server.com/docs/first）
+pgsql:
   path: 'localhost'
-  port: '3306'
-  config: 'charset=utf8'
+  port: '15432'
+  config: 'TimeZone=Asia/Shanghai'
   db-name: 'dtabapi'
-  username: 'root'
-  password: 'qwer1234'
+  username: 'pg-user'
+  password: '3877x1T3#'
   max-idle-conns: 10
   max-open-conns: 100
   log-mode: ""
   log-zap: false
 
-
 db-list:
   - disabled: true # 是否启用
-    type: "mysql" # 数据库的类型,目前支持mysql、pgsql
+    type: "pgsql" # 数据库的类型,目前支持mysql、pgsql
     alias-name: "" # 数据库的名称,注意: alias-name 需要在db-list中唯一
     path: ''
     port: ''

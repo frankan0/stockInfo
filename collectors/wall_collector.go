@@ -43,6 +43,7 @@ func (w *WallCollector) BingToday() {
 	wall.Title = bingWall.Title
 	wall.Date = bingWall.Enddate
 	wall.Link = bingWall.Url
+	wall.Channel = "bing"
 	service.ServiceGroupApp.WallServiceGroup.AddWall(wall)
 }
 
