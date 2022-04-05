@@ -4,3 +4,5 @@
 [go-spider]2022/04/01 - 18:04:40.099	[31merror[0m	D:/dev/GitHub/bingSpider/collectors/weibo_hot.go:70	insert batch hots error.	{"error": "Error 1146: Table 'dtabapi.hot_ranks' doesn't exist"}
 [go-spider]2022/04/01 - 18:05:10.627	[31merror[0m	D:/dev/GitHub/bingSpider/collectors/weibo_hot.go:70	insert batch hots error.	{"error": "empty slice found"}
 [go-spider]2022/04/02 - 17:44:53.616	[31merror[0m	D:/dev/GitHub/bingSpider/collectors/weibo_hot.go:56	insert batch hots error.	{"error": "ERROR: column \"source\" of relation \"hot_ranks\" does not exist (SQLSTATE 42703)"}
+[go-spider]2022/04/03 - 08:15:03.052	[31merror[0m	/Users/frank0/Project/gos/collectors/wall_collector.go:109	insert batch wall error.
+[go-spider]2022/04/03 - 08:15:08.547	[31merror[0m	/Users/frank0/Project/gos/collectors/wall_collector.go:109	insert batch wall error.
