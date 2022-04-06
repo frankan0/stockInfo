@@ -21,7 +21,7 @@ func (w *WeiboCollector) Start()  {
 	hots := []model.HotRank{}
 	c.OnHTML("table tbody tr", func(element *colly.HTMLElement) {
 		hot := model.HotRank{}
-		hot.Link = element.ChildAttr("a","href")
+		hot.Link = "https://s.weibo.com"+element.ChildAttr("a","href")
 		hot.Title = element.ChildText("a")
 		hot.HotValue = element.ChildText("span")
 		hot.Day = timeStr
