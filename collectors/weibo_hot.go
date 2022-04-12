@@ -13,7 +13,13 @@ type WeiboCollector struct {
 
 }
 
-func (w *WeiboCollector) Start()  {
+func (w *WeiboCollector) regTask(){
+	global.GVA_Timer.AddTaskByFunc("WeiboCollectorTask","0 34 0/1 * * ? ",w.start)
+	global.GVA_Timer.StartTask("WeiboCollectorTask")
+}
+
+
+func (w *WeiboCollector) start()  {
 	c := colly.NewCollector(
 		colly.UserAgent("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36"),
 	)

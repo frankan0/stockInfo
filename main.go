@@ -17,9 +17,9 @@ func main() {
 	global.GVA_DB = initialize.Gorm() // gorm连接数据库
 	//wallCollector := new(collectors.WallCollector)
 	//wallCollector.Start()
-	weiboCollector := new(collectors.WeiboCollector)
-	weiboCollector.Start()
-
+	var collectorManagerApp = new(collectors.CollectorManager)
+	collectorManagerApp.Start()
+	select{}
 }
 
 

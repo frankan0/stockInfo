@@ -16,7 +16,12 @@ type WallCollector struct {
 
 }
 
-func (w *WallCollector) BingToday() {
+func (w *WallCollector) regTask(){
+	global.GVA_Timer.AddTaskByFunc("WallCollectorTask","0 0 2 * * ? ",w.start)
+	global.GVA_Timer.StartTask("WallCollectorTask")
+}
+
+func (w *WallCollector) start() {
 	resp, err := http.Get("https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN")
 	if err != nil {
 		global.GVA_LOG.Error("获取bing今日壁纸接口失败")
@@ -47,7 +52,7 @@ func (w *WallCollector) BingToday() {
 	service.ServiceGroupApp.WallServiceGroup.AddWall(wall)
 }
 
-func (w *WallCollector) Start()  {
+func (w *WallCollector) History()  {
 	// Instantiate default collector
 	c := colly.NewCollector(
 		// Visit only domains: reddit.com
