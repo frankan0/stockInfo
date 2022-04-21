@@ -15,7 +15,6 @@ type WeiboCollector struct {
 
 func (w *WeiboCollector) regTask(){
 	global.GVA_Timer.AddTaskByFunc("WeiboCollectorTask","0 0 0/1 * * ?",w.start)
-	global.GVA_Timer.StartTask("WeiboCollectorTask")
 }
 
 

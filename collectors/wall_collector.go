@@ -18,7 +18,6 @@ type WallCollector struct {
 
 func (w *WallCollector) regTask(){
 	global.GVA_Timer.AddTaskByFunc("WallCollectorTask","0 30 0 1/1 8 ?",w.start)
-	global.GVA_Timer.StartTask("WallCollectorTask")
 }
 
 func (w *WallCollector) start() {

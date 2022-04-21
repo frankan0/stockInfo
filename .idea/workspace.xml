@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8e7b69a2-e6b1-4377-a4c1-b87f744b61a7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.docker.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config.docker.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/collectors/wall_collector.go" beforeDir="false" afterPath="$PROJECT_DIR$/collectors/wall_collector.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/collectors/weibo_hot.go" beforeDir="false" afterPath="$PROJECT_DIR$/collectors/weibo_hot.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
