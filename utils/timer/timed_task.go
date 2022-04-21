@@ -2,6 +2,7 @@ package timer
 
 import (
 	"sync"
+	"time"
 
 	"github.com/robfig/cron/v3"
 )
@@ -28,7 +29,9 @@ func (t *timer) AddTaskByFunc(taskName string, spec string, task func()) (cron.E
 	t.Lock()
 	defer t.Unlock()
 	if _, ok := t.taskList[taskName]; !ok {
-		t.taskList[taskName] = cron.New()
+		sh, _ := time.LoadLocation("Asia/Shanghai")
+		t.taskList[taskName] = cron.New(cron.WithSeconds(),cron.WithLocation(sh))
+
 	}
 	id, err := t.taskList[taskName].AddFunc(spec, task)
 	t.taskList[taskName].Start()

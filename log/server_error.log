@@ -7,3 +7,16 @@
 [go-spider]2022/04/03 - 08:15:03.052	[31merror[0m	/Users/frank0/Project/gos/collectors/wall_collector.go:109	insert batch wall error.
 [go-spider]2022/04/03 - 08:15:08.547	[31merror[0m	/Users/frank0/Project/gos/collectors/wall_collector.go:109	insert batch wall error.
 [go-spider]2022/04/06 - 18:28:33.311	[31merror[0m	D:/dev/GitHub/bingSpider/collectors/weibo_hot.go:56	insert batch hots error.	{"error": "ERROR: column \"source\" of relation \"hot_ranks\" does not exist (SQLSTATE 42703)"}
+[go-spider]2022/04/20 - 17:11:29.522	[31merror[0m	D:/dev/GitHub/bingSpider/collectors/wall_collector.go:114	insert batch wall error.
+[go-spider]2022/04/20 - 17:11:36.960	[31merror[0m	D:/dev/GitHub/bingSpider/collectors/wall_collector.go:114	insert batch wall error.
+[go-spider]2022/04/20 - 17:11:42.486	[31merror[0m	D:/dev/GitHub/bingSpider/collectors/wall_collector.go:114	insert batch wall error.
+[go-spider]2022/04/20 - 17:11:53.810	[31merror[0m	D:/dev/GitHub/bingSpider/collectors/wall_collector.go:114	insert batch wall error.
+[go-spider]2022/04/20 - 17:11:57.220	[31merror[0m	D:/dev/GitHub/bingSpider/collectors/wall_collector.go:114	insert batch wall error.
+[go-spider]2022/04/20 - 17:12:04.364	[31merror[0m	D:/dev/GitHub/bingSpider/collectors/wall_collector.go:114	insert batch wall error.
+[go-spider]2022/04/20 - 17:12:08.021	[31merror[0m	D:/dev/GitHub/bingSpider/collectors/wall_collector.go:114	insert batch wall error.
+[go-spider]2022/04/20 - 17:12:16.570	[31merror[0m	D:/dev/GitHub/bingSpider/collectors/wall_collector.go:114	insert batch wall error.
+[go-spider]2022/04/20 - 17:12:21.757	[31merror[0m	D:/dev/GitHub/bingSpider/collectors/wall_collector.go:114	insert batch wall error.
+[go-spider]2022/04/20 - 17:12:28.996	[31merror[0m	D:/dev/GitHub/bingSpider/collectors/wall_collector.go:114	insert batch wall error.
+[go-spider]2022/04/20 - 17:12:32.278	[31merror[0m	D:/dev/GitHub/bingSpider/collectors/wall_collector.go:114	insert batch wall error.
+[go-spider]2022/04/20 - 17:12:32.797	[31merror[0m	D:/dev/GitHub/bingSpider/collectors/wall_collector.go:114	insert batch wall error.
+[go-spider]2022/04/21 - 14:01:45.450	[31merror[0m	D:/dev/GitHub/bingSpider/collectors/wall_collector.go:27	获取bing今日壁纸接口失败

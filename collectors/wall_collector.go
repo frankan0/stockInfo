@@ -17,7 +17,7 @@ type WallCollector struct {
 }
 
 func (w *WallCollector) regTask(){
-	global.GVA_Timer.AddTaskByFunc("WallCollectorTask","0 0 2 * * ? ",w.start)
+	global.GVA_Timer.AddTaskByFunc("WallCollectorTask","0 30 0 1/1 8 ?",w.start)
 	global.GVA_Timer.StartTask("WallCollectorTask")
 }
 
@@ -59,7 +59,6 @@ func (w *WallCollector) History()  {
 		colly.UserAgent("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36"),
 		colly.AllowedDomains("bing.ioliu.cn"),
 	)
-
 	//c.Limit(&colly.LimitRule{
 	//	DomainGlob:  "*ioliu.*",
 	//	Parallelism: 2,
@@ -76,6 +75,7 @@ func (w *WallCollector) History()  {
 		//去掉后面的
 		picNameArr :=strings.Split(httpArr[len(httpArr)-1],"_")
 		wall.PicName = picNameArr[0]+"_"+picNameArr[1]
+		wall.Channel="bing"
 		if wall.PicName == "" {
 			return
 		}
@@ -84,7 +84,6 @@ func (w *WallCollector) History()  {
 			saveData2db(walls)
 			walls = walls[:0]
 		}
-
 	})
 
 
