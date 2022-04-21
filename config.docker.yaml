@@ -29,11 +29,9 @@ redis:
   addr: '127.0.0.1:6379'
   password: ''
 
-# pgsql connect configuration
-# 未初始化之前请勿手动修改数据库信息！！！如果一定要手动初始化请看（https://www.github.com/flipped-aurora/gin-vue-admin/server.com/docs/first）
 pgsql:
-  path: 'localhost'
-  port: '15432'
+  path: '177.7.0.13'
+  port: '5432'
   config: 'TimeZone=Asia/Shanghai'
   db-name: 'dtabapi'
   username: 'pg-user'
