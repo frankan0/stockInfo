@@ -39,17 +39,17 @@ func (s *StockApi) QueryAmplifyVol(c *gin.Context)  {
 	var stockLists []StockDailyInfo
 	for i := range data {
 		var dayInfo StockDailyInfo
-		dayInfo.avg = data[i]
+		dayInfo.Avg = data[i]
 		daily := service.ServiceGroupApp.StockService.QueryLatestDaily(data[i].TsCode)
-		dayInfo.daily = daily
-		dayInfo.baseInfo = service.ServiceGroupApp.StockService.QueryBaseInfo(data[i].TsCode)
+		dayInfo.Daily = daily
+		dayInfo.BaseInfo = service.ServiceGroupApp.StockService.QueryBaseInfo(data[i].TsCode)
 		stockLists = append(stockLists, dayInfo)
 	}
 	response.OkWithData(stockLists,c)
 }
 
 type StockDailyInfo struct {
-	daily stock.Daily `json:"daily"`
-	baseInfo stock.BaseInfo `json:"base_info"`
-	avg stock.AvgVol `json:"avg"`
+	Daily stock.Daily `json:"daily"`
+	BaseInfo stock.BaseInfo `json:"base_info"`
+	Avg stock.AvgVol `json:"avg"`
 }

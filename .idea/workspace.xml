@@ -5,10 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/v1/stock/stock_api.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/v1/stock/stock_api.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/viper.go" beforeDir="false" afterPath="$PROJECT_DIR$/core/viper.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/zap.go" beforeDir="false" afterPath="$PROJECT_DIR$/core/zap.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/global/global.go" beforeDir="false" afterPath="$PROJECT_DIR$/global/global.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/initialize/gorm_mysql.go" beforeDir="false" afterPath="$PROJECT_DIR$/initialize/gorm_mysql.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/server_error.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/server_error.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

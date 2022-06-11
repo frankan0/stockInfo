@@ -46,7 +46,7 @@ pgsql:
 mysql:
   path: 'localhost'
   port: '3306'
-  config: 'charset=utf8'
+  config: 'charset=utf8?&parseTime=true'
   db-name: 'dtabapi'
   username: 'root'
   password: ''
