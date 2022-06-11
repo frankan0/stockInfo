@@ -1,8 +1,10 @@
 package core
 
 import (
-	"api.frank.top/spider/global"
-	"api.frank.top/spider/utils"
+	"api.frank.top/stockInfo/global"
+	"api.frank.top/stockInfo/utils"
+	"api.frank.top/stockInfo/global"
+	"api.frank.top/stockInfo/utils"
 	"flag"
 	"fmt"
 	"os"

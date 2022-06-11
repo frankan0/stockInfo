@@ -1,7 +1,7 @@
 package initialize
 
 import (
-	"api.frank.top/spider/global"
+	"api.frank.top/stockInfo/global"
 	"gorm.io/gorm"
 )
 

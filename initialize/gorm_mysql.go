@@ -1,9 +1,11 @@
 package initialize
 
 import (
-	"api.frank.top/spider/config"
-	"api.frank.top/spider/global"
-	"api.frank.top/spider/initialize/internal"
+	"api.frank.top/stockInfo/config"
+	"api.frank.top/stockInfo/global"
+	"api.frank.top/stockInfo/initialize/internal"
+	"api.frank.top/stockInfo/config"
+	"api.frank.top/stockInfo/global"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )

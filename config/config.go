@@ -5,4 +5,5 @@ type Server struct {
 	Mysql  Mysql `mapstructure:"mysql" json:"mysql" yaml:"mysql"`
 	System  System  `mapstructure:"system" json:"system" yaml:"system"`
 	Pgsql  Pgsql `mapstructure:"pgsql" json:"pgsql" yaml:"pgsql"`
+	Redis   Redis   `mapstructure:"redis" json:"redis" yaml:"redis"`
 }

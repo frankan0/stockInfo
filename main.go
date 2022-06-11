@@ -1,10 +1,12 @@
 package main
 
 import (
-	"api.frank.top/spider/collectors"
-	"api.frank.top/spider/core"
-	"api.frank.top/spider/global"
-	"api.frank.top/spider/initialize"
+	"api.frank.top/stockInfo/core"
+	"api.frank.top/stockInfo/global"
+	"api.frank.top/stockInfo/initialize"
+	"api.frank.top/stockInfo/router"
+	"fmt"
+	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
 )
 
@@ -17,9 +19,24 @@ func main() {
 	global.GVA_DB = initialize.Gorm() // gorm连接数据库
 	//wallCollector := new(collectors.WallCollector)
 	//wallCollector.History()
-	var collectorManagerApp = new(collectors.CollectorManager)
-	collectorManagerApp.Start()
-	select{}
+	//var collectorManagerApp = new(collectors.CollectorManager)
+	//collectorManagerApp.Start()
+	//select{}
+	//init redis
+	if global.GVA_CONFIG.System.UseRedis {
+		// 初始化redis服务
+		initialize.Redis()
+	}
+	//拉取股票基础数据
+	//stockCollector := new(collectors.StockCollector)
+	//stockCollector.InitStockCurrentInfo()
+	r := gin.Default()
+	publicGroup := r.Group("")
+	router.RouterGroupApp.Stock.InitStockRouter(publicGroup)
+	address := fmt.Sprintf(":%d",global.GVA_CONFIG.System.Addr)
+	r.Run(address)
+	//stockService := new(stock.StockService)
+	//stockService.ComputeAvgVolData()
 }
 
 

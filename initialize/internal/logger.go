@@ -1,7 +1,7 @@
 package internal
 
 import (
-	"api.frank.top/spider/global"
+	"api.frank.top/stockInfo/global"
 	"fmt"
 	"gorm.io/gorm/logger"
 )

@@ -1,9 +1,9 @@
 package service
 
-import "api.frank.top/spider/service/wall"
+import "api.frank.top/stockInfo/service/stock"
 
 type ServiceGroup struct {
-	WallServiceGroup   wall.WallService
+	StockService stock.StockService
 }
 
 var ServiceGroupApp = new(ServiceGroup)

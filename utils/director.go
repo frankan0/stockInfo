@@ -2,7 +2,7 @@ package utils
 
 
 import (
-	"api.frank.top/spider/global"
+	"api.frank.top/stockInfo/global"
 	"errors"
 	"os"
 	"go.uber.org/zap"

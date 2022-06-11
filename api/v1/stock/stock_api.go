@@ -1,0 +1,57 @@
+package stock
+
+import (
+	"api.frank.top/stockInfo/global"
+	"api.frank.top/stockInfo/model/request"
+	"api.frank.top/stockInfo/model/response"
+	"api.frank.top/stockInfo/model/stock"
+	"api.frank.top/stockInfo/service"
+	"api.frank.top/stockInfo/global"
+	"api.frank.top/stockInfo/service"
+	"github.com/gin-gonic/gin"
+	"go.uber.org/zap"
+)
+
+type StockApi struct {
+
+}
+
+func (s *StockApi) ListDaily(c *gin.Context)  {
+	var pageInfo request.PageInfo
+	if c.ShouldBind(&pageInfo) != nil{
+		response.FailWithMessage("获取参数失败",c)
+		return
+	}
+	if err, list, total := service.ServiceGroupApp.StockService.QueryLatestDailyData(pageInfo);err!=nil{
+		global.GVA_LOG.Error("QueryLatestDailyData!", zap.Error(err))
+		response.FailWithMessage("获取日线行情失败", c)
+	}else{
+		response.OkWithDetailed(response.PageResult{
+			List:     list,
+			Total:    total,
+			Page:     pageInfo.Page,
+			PageSize: pageInfo.PageSize,
+		}, "获取成功", c)
+	}
+}
+
+
+func (s *StockApi) QueryAmplifyVol(c *gin.Context)  {
+	data := service.ServiceGroupApp.StockService.QueryAmplifyVol(1, 2)
+	var stockLists []StockDailyInfo
+	for i := range data {
+		var dayInfo StockDailyInfo
+		dayInfo.avg = data[i]
+		daily := service.ServiceGroupApp.StockService.QueryLatestDaily(data[i].TsCode)
+		dayInfo.daily = daily
+		dayInfo.baseInfo = service.ServiceGroupApp.StockService.QueryBaseInfo(data[i].TsCode)
+		stockLists = append(stockLists, dayInfo)
+	}
+	response.OkWithData(stockLists,c)
+}
+
+type StockDailyInfo struct {
+	daily stock.Daily `json:"daily"`
+	baseInfo stock.BaseInfo `json:"base_info"`
+	avg stock.AvgVol `json:"avg"`
+}

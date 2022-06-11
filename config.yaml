@@ -3,9 +3,9 @@
 system:
   env: 'public'  # Change to "develop" to skip authentication for development mode
   addr: 8888
-  db-type: 'pgsql'
+  db-type: 'mysql'
   oss-type: 'local'    # 控制oss选择走本地还是 七牛等其他仓 自行增加其他oss仓可以在 server/utils/upload/upload.go 中 NewOss函数配置
-  use-redis: false     # 使用redis
+  use-redis: true     # 使用redis
   use-multipoint: false
   # IP限制次数 一个小时15000次
   iplimit-count: 15000
@@ -34,7 +34,7 @@ redis:
 pgsql:
   path: 'localhost'
   port: '15432'
-  config: 'TimeZone=Asia/Shanghai'
+  config: 'TimeZone=Asia/Shanghai
   db-name: 'dtabapi'
   username: 'pg-user'
   password: '3877x1T3#'
@@ -43,9 +43,21 @@ pgsql:
   log-mode: ""
   log-zap: false
 
+mysql:
+  path: 'localhost'
+  port: '3306'
+  config: 'charset=utf8'
+  db-name: 'dtabapi'
+  username: 'root'
+  password: ''
+  max-idle-conns: 10
+  max-open-conns: 100
+  log-mode: ""
+  log-zap: false
+
 db-list:
   - disabled: true # 是否启用
-    type: "pgsql" # 数据库的类型,目前支持mysql、pgsql
+    type: "mysql" # 数据库的类型,目前支持mysql、pgsql
     alias-name: "" # 数据库的名称,注意: alias-name 需要在db-list中唯一
     path: ''
     port: ''

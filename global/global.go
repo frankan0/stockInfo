@@ -1,8 +1,10 @@
 package global
 
 import (
-	"api.frank.top/spider/config"
-	"api.frank.top/spider/utils/timer"
+	"api.frank.top/stockInfo/config"
+	"api.frank.top/stockInfo/utils/timer"
+	"api.frank.top/stockInfo/config"
+	"github.com/go-redis/redis/v8"
 	"go.uber.org/zap"
 	"github.com/spf13/viper"
 	"gorm.io/gorm"
@@ -15,4 +17,5 @@ var (
 	GVA_VP     *viper.Viper
 	GVA_LOG    *zap.Logger
 	GVA_Timer  timer.Timer = timer.NewTimerTask()
+	GVA_REDIS  *redis.Client
 )
