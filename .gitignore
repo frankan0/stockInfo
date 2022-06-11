@@ -1,3 +1,4 @@
 
 log/server_error.log
 *.log
+.idea/workspace.xml
