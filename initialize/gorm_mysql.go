@@ -1,8 +1,6 @@
 package initialize
 
 import (
-	"api.frank.top/stockInfo/config"
-	"api.frank.top/stockInfo/global"
 	"api.frank.top/stockInfo/initialize/internal"
 	"api.frank.top/stockInfo/config"
 	"api.frank.top/stockInfo/global"

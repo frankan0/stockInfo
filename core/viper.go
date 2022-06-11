@@ -3,8 +3,6 @@ package core
 import (
 	"api.frank.top/stockInfo/global"
 	"api.frank.top/stockInfo/utils"
-	"api.frank.top/stockInfo/global"
-	"api.frank.top/stockInfo/utils"
 	"flag"
 	"fmt"
 	"os"

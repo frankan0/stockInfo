@@ -1,11 +1,9 @@
 package stock
 
 import (
-	"api.frank.top/stockInfo/global"
 	"api.frank.top/stockInfo/model/request"
 	"api.frank.top/stockInfo/model/response"
 	"api.frank.top/stockInfo/model/stock"
-	"api.frank.top/stockInfo/service"
 	"api.frank.top/stockInfo/global"
 	"api.frank.top/stockInfo/service"
 	"github.com/gin-gonic/gin"

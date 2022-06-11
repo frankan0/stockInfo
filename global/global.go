@@ -1,7 +1,6 @@
 package global
 
 import (
-	"api.frank.top/stockInfo/config"
 	"api.frank.top/stockInfo/utils/timer"
 	"api.frank.top/stockInfo/config"
 	"github.com/go-redis/redis/v8"
