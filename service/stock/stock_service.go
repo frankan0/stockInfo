@@ -102,9 +102,9 @@ func (*StockService) QueryDaily(tsCode string,tradeDate int) stock.Daily{
 
 
 
-func (*StockService) QueryAmplifyVol(dayType int , multiple float64) []stock.AvgVol {
+func (*StockService) QueryAmplifyVol(dayType string , multiple float64) []stock.AvgVol {
 	var colName string
-	if dayType == 1 {
+	if dayType == "1" || dayType == "" {
 		//3天
 		colName="avg_three"
 	}else{

@@ -8,6 +8,7 @@ import (
 	"api.frank.top/stockInfo/service"
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
+	"strconv"
 )
 
 type StockApi struct {
@@ -35,7 +36,10 @@ func (s *StockApi) ListDaily(c *gin.Context)  {
 
 
 func (s *StockApi) QueryAmplifyVol(c *gin.Context)  {
-	data := service.ServiceGroupApp.StockService.QueryAmplifyVol(1, 2)
+	dayType := c.Query("dayType")
+	muti := c.Query("multiple")
+	multiple, _ := strconv.ParseFloat(muti,  64)
+	data := service.ServiceGroupApp.StockService.QueryAmplifyVol(dayType, multiple)
 	var stockLists []StockDailyInfo
 	for i := range data {
 		var dayInfo StockDailyInfo
