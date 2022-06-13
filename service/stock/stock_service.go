@@ -112,7 +112,7 @@ func (*StockService) QueryAmplifyVol(dayType string , multiple float64) []stock.
 		colName="avg_five"
 	}
 	var stocks []stock.AvgVol
-	err := global.GVA_DB.Raw("select * from stock_vol_avg where (current_vol/"+colName+") > ?", multiple).Scan(&stocks).Error
+	err := global.GVA_DB.Raw("select * from stock_vol_avg where (current_vol/"+colName+") > ? and pct_chg>0", multiple).Scan(&stocks).Error
 	if err != nil || errors.Is(err, gorm.ErrRecordNotFound) {
 		global.GVA_LOG.Error("QueryAmplifyVol error ",zap.Error(err))
 	}

@@ -24,6 +24,7 @@ type BaseInfo struct {
 	Name string `json:"name"`
 	Area string `json:"area"`
 	ListStatus string `json:"list_status"`
+	Market string `json:"market"`
 }
 
 func (BaseInfo) TableName() string {

@@ -6,8 +6,8 @@ type CollectorManager struct {
 
 
 func (m *CollectorManager) Start()  {
-	m.collectors =  append(m.collectors,new(WeiboCollector))
-	m.collectors =  append(m.collectors,new(WallCollector))
+	m.collectors =  append(m.collectors,new(StockCollector))
+	//m.collectors =  append(m.collectors,new(WallCollector))
 	//开始注册
 	for _,c := range m.collectors{
 		c.regTask()

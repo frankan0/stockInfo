@@ -2,14 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="832eb2d8-25ac-455c-8296-59ccd8212f46" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/collectors/wallstreet_collector.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/v1/stock/stock_api.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/v1/stock/stock_api.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/collectors/collectors.go" beforeDir="false" afterPath="$PROJECT_DIR$/collectors/collectors.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/collectors/stock_collector.go" beforeDir="false" afterPath="$PROJECT_DIR$/collectors/stock_collector.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/server_error.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/server_error.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/stock/stock.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/stock/stock.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/stock/stock_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/stock/stock_service.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xueqiu/xueqiu.go" beforeDir="false" afterPath="$PROJECT_DIR$/xueqiu/xueqiu.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
   </component>
   <component name="GOROOT" url="file://$USER_HOME$/sdk/go1.17.11" />
   <component name="Git.Settings">
@@ -19,11 +32,15 @@
     <option name="indexEntireGoPath" value="false" />
   </component>
   <component name="ProjectId" id="2AQLrNzH1gYuBIJjbpRDBMu5U0N" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultGoTemplateProperty" value="Go File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -54,6 +71,18 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>

@@ -1,28 +1,19 @@
-package xueqiu
+package collectors
 
 import (
 	"api.frank.top/stockInfo/global"
-	"encoding/json"
 	"github.com/gocolly/colly"
-	"github.com/shopspring/decimal"
 	"go.uber.org/zap"
-	"strings"
-	"time"
 )
 
-type XueqiuApi struct{
-
+type WallStreetCollector struct {
+	
 }
 
-func (*XueqiuApi) GetDailyStockBase(tsCodeTuShare string) map[string]string {
-	//code 转换
-	split := strings.Split(tsCodeTuShare, ".")
-	tsCode := split[1]+split[0]
+func (*WallStreetCollector) start()  {
 	c := colly.NewCollector(
 		colly.UserAgent("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36"),
 	)
-	var info map[string]string
-
 	header := map[string]string{
 		"Accept":     "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
 		"Connection": "keep-alive",
@@ -36,57 +27,13 @@ func (*XueqiuApi) GetDailyStockBase(tsCodeTuShare string) map[string]string {
 		for key, value := range header {
 			r.Headers.Add(key, value)
 		}
-
 	})
 	// Set error handler
 	c.OnError(func(r *colly.Response, err error) {
 		global.GVA_LOG.Error("Request URL: failed with response:",zap.String("url",r.Request.URL.String()),zap.Error(err))
 	})
 	c.OnResponse(func(response *colly.Response) {
-		var result map[string]interface{}
-		json.Unmarshal(response.Body, &result)
-		data :=result[tsCode].(map[string]interface{})
-		info = make(map[string]string)
-		timestr := data["time"].(string)
-		tt, _ := time.Parse(time.RubyDate, timestr)
-		info["ts_code"] = tsCode
-		info["trade_date"] = tt.Format("20060102")
-		info["close"] = decimalFormString(data["close"].(string))
-		info["turnover_rate"] = decimalFormString(strings.TrimRight(data["turnover_rate"].(string),"%"))
-		pe:=data["pe_lyr"].(string)
-		if pe == "" {
-			info["pe"] = "0"
-		}else{
-			info["pe"] = pe
-		}
-		s := data["pe_ttm"].(string)
-		if s == "" {
-			info["pe_ttm"] = "0"
-		}else{
-			info["pe_ttm"] = s
-		}
-		pb := data["pb"].(string)
-		if pb == "" {
-			info["pb"] ="0"
-		}else{
-			info["pb"] = pb
-		}
-		info["total_mv"] = decimalFormString(data["marketCapital"].(string))
-		info["circ_mv"] = decimalFormString(data["float_market_capital"].(string))
-		info["total_share"] = decimalFormString(data["totalShares"].(string))
-		info["float_share"] = decimalFormString(data["float_shares"].(string))
+
 	})
-	c.Visit("https://xueqiu.com/v4/stock/quote.json?code="+tsCode)
-	return info
+	c.Visit("https://api-one.wallstcn.com/apiv1/content/lives?channel=global-channel&client=pc&limit=20&first_page=true&accept=live,vip-live")
 }
-
-func decimalFormString(data string) string {
-	fromString, err := decimal.NewFromString(data)
-
-	if err != nil {
-		global.GVA_LOG.Error("transfer Data error ",zap.String("data",data),zap.Error(err))
-		return "0"
-	}
-	return fromString.String()
-}
-

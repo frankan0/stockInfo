@@ -3,10 +3,10 @@ package collectors
 import (
 	"api.frank.top/stockInfo/global"
 	"api.frank.top/stockInfo/xueqiu"
-	"api.frank.top/stockInfo/global"
-	"api.frank.top/stockInfo/xueqiu"
 	"github.com/ShawnRong/tushare-go"
+	"go.uber.org/zap"
 	"strings"
+	"time"
 )
 
 
@@ -32,6 +32,10 @@ func (sc *StockCollector) InitStockCurrentInfo()  {
 		global.GVA_DB.Raw("SELECT ts_code FROM stock_base_info limit ?,?",start,300).Scan(&tsCodes)
 		for j := 0 ;j< len(tsCodes);j++{
 			sc.GetStockRealInfo(tsCodes[j])
+			if (j*i)%300 == 0 {
+				time.Sleep(3 * time.Second)
+			}
+			time.Sleep(100 * time.Millisecond)
 		}
 	}
 }
@@ -50,21 +54,40 @@ func (sc *StockCollector) GetStockRealInfo(tsCode string)  {
 	global.GVA_DB.Exec(insertSql,values)
 }
 
-func (sc * StockCollector) InitStockHistoryDailyData()  {
+func (sc * StockCollector) InitStockHistoryDailyData(startDate string )  {
 	var totalCount int
 	global.GVA_DB.Raw("SELECT count(*) FROM stock_base_info").Scan(&totalCount)
-	totalPage := totalCount/300+1
+	totalPage := totalCount/500+1
 	for i := 1; i <= totalPage; i++ {
-		start := 300*(i-1)
+		start := 500*(i-1)
 		var tsCodes []string
 		global.GVA_DB.Raw("SELECT ts_code FROM stock_base_info limit ?,?",start,300).Scan(&tsCodes)
 		for j := 0 ;j< len(tsCodes);j++{
-			sc.DailyData(tsCodes[j],"20220101")
+			sc.DailyData(tsCodes[j],startDate)
+			if j%20 == 1 {
+				time.Sleep(2 * time.Second)
+			}
 		}
 	}
 }
 
+func (sc *StockCollector) regTask() {
+
+	global.GVA_Timer.AddTaskByFunc("collectStockDailyDataTask","0 58 21 * * *", func() {
+		sc.start()
+	})
+	global.GVA_LOG.Info("reg task for collectStockDailyDataTask cron:0 30 16 * * *")
+}
+
+func (sc *StockCollector) start()  {
+	currentTime := time.Now()
+	today := currentTime.Format("20060102")
+	sc.InitStockHistoryDailyData(today)
+}
+
 func (sc * StockCollector) DailyData(tsCode string,startDate string )  {
+	//delete data
+	//global.GVA_DB.Where("ts_code = ? and trade_date=?",tsCode,startDate).Delete(&stock.Daily{})
 	c := tushare.New("98dc5435aad747016e74b9365c4d2d736fa22cb7e2b553fae480edab")
 	// 参数
 	params := make(map[string]string)
@@ -83,7 +106,12 @@ func (sc * StockCollector) DailyData(tsCode string,startDate string )  {
 		"vol",
 		"amount"}
 	// 根据api 请求对应的接口
-	data, _ := c.Daily(params, fields)
+	data, err := c.Daily(params, fields)
+
+	if err != nil {
+		global.GVA_LOG.Error("query interface error,",zap.Error(err))
+		panic(err)
+	}
 	d := data.Data
 	f := d.Fields
 	items := d.Items
