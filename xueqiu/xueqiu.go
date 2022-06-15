@@ -4,14 +4,45 @@ import (
 	"api.frank.top/stockInfo/global"
 	"encoding/json"
 	"github.com/gocolly/colly"
+	"github.com/gocolly/colly/proxy"
 	"github.com/shopspring/decimal"
 	"go.uber.org/zap"
+	"io/ioutil"
+	"net/http"
 	"strings"
 	"time"
 )
 
 type XueqiuApi struct{
 
+}
+
+type IpProxyItem struct {
+	Proxy string `json:"proxy"`
+	lastStatus bool `json:"last_status"`
+}
+
+func getProxyList() []string {
+	var ipPool []string
+	response, err := http.Get("http://127.0.0.1:5010/all/")
+	if err!=nil {
+		global.GVA_LOG.Error("获取代理IP池失败",zap.Error(err))
+		return ipPool
+	}
+	defer response.Body.Close()
+	body,err := ioutil.ReadAll(response.Body)
+	if err !=nil {
+		global.GVA_LOG.Error("获取代理IP池失败",zap.Error(err))
+		return ipPool
+	}
+	if response.StatusCode == http.StatusOK {
+		var ips []IpProxyItem
+		json.Unmarshal(body,&ips)
+		for i := range ips {
+			ipPool = append(ipPool,"http://"+ips[i].Proxy)
+		}
+	}
+	return ipPool
 }
 
 func (*XueqiuApi) GetDailyStockBase(tsCodeTuShare string) map[string]string {
@@ -21,6 +52,17 @@ func (*XueqiuApi) GetDailyStockBase(tsCodeTuShare string) map[string]string {
 	c := colly.NewCollector(
 		colly.UserAgent("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36"),
 	)
+	ipProxyList := getProxyList()
+	if len(ipProxyList) >0 {
+		switcher, err := proxy.RoundRobinProxySwitcher(ipProxyList...)
+		if err != nil {
+			global.GVA_LOG.Error("查询IP代理列表, 异常", zap.Error(err))
+		}
+		c.SetProxyFunc(switcher)
+		global.GVA_LOG.Info("设置代理池成功")
+	}
+
+
 	var info map[string]string
 
 	header := map[string]string{
