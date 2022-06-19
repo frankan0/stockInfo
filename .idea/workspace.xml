@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="832eb2d8-25ac-455c-8296-59ccd8212f46" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/xueqiu/tencent.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/v1/stock/stock_api.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/v1/stock/stock_api.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/collectors/stock_collector.go" beforeDir="false" afterPath="$PROJECT_DIR$/collectors/stock_collector.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/global/global.go" beforeDir="false" afterPath="$PROJECT_DIR$/global/global.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/log/server_error.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/server_error.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/stock/stock.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/stock/stock.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/stock/stock_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/stock/stock_service.go" afterDir="false" />
-    </list>
+    <list default="true" id="832eb2d8-25ac-455c-8296-59ccd8212f46" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
