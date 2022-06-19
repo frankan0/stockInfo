@@ -51,3 +51,19 @@ type Daily struct {
 func (Daily) TableName() string {
 	return "stock_daily"
 }
+
+
+
+type DailyBase struct {
+	ID int64 `json:"id"`
+	TsCode string `json:"ts_code"`
+	TradeDate string `json:"trade_date"`
+	TurnoverRate float64 `json:"turnover_rate"`
+	Pe float64 `json:"pe"`
+	peTtm float64 `json:"pe_ttm"`
+	totalMv float64 `json:"total_mv"`
+}
+
+func (DailyBase) TableName() string {
+	return "stock_daily_base"
+}

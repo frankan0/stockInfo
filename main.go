@@ -1,10 +1,12 @@
 package main
 
 import (
-	"api.frank.top/stockInfo/collectors"
 	"api.frank.top/stockInfo/core"
 	"api.frank.top/stockInfo/global"
 	"api.frank.top/stockInfo/initialize"
+	"api.frank.top/stockInfo/router"
+	"fmt"
+	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
 )
 
@@ -24,14 +26,14 @@ func main() {
 		initialize.Redis()
 	}
 	//拉取股票基础数据
-	stockCollector := new(collectors.StockCollector)
-	//stockCollector.InitStockHistoryDailyData("20220101")
-	stockCollector.InitStockCurrentInfo()
-	//r := gin.Default()
-	//publicGroup := r.Group("")
-	//router.RouterGroupApp.Stock.InitStockRouter(publicGroup)
-	//address := fmt.Sprintf(":%d",global.GVA_CONFIG.System.Addr)
-	//r.Run(address)
+	//stockCollector := new(collectors.StockCollector)
+	//stockCollector.InitStockHistoryDailyData("20220617")
+	//stockCollector.InitStockCurrentInfo()
+	r := gin.Default()
+	publicGroup := r.Group("")
+	router.RouterGroupApp.Stock.InitStockRouter(publicGroup)
+	address := fmt.Sprintf(":%d",global.GVA_CONFIG.System.Addr)
+	r.Run(address)
 	//stockService := new(stock.StockService)
 	//stockService.ComputeAvgVolData()
 }

@@ -78,6 +78,42 @@ func ( ss *StockService) QueryLatestDaily(tsCode string) stock.Daily{
 	return ss.QueryDaily(tsCode, tradeDate)
 }
 
+func ( ss *StockService) QueryLatestDailyBase(tsCode string) stock.DailyBase{
+	var tradeDate int
+	global.GVA_DB.Raw("select trade_date from stock_daily_base where ts_code='000001.SZ' order by trade_date desc limit 1").Scan(&tradeDate)
+	return ss.QueryDailyBase(tsCode, tradeDate)
+}
+
+func (*StockService) QueryDailyBase(tsCode string,tradeDate int) stock.DailyBase{
+	dailyKey := fmt.Sprintf("stockDailyBaseKey:%s:%s",tsCode,string(tradeDate))
+	result, err := global.GVA_REDIS.Get(context.Background(), dailyKey).Result()
+	if err != nil {
+		//read from db
+		baseInfo := queryDailyBaseFromDB(tsCode,tradeDate)
+		marshal, _ := json.Marshal(baseInfo)
+		err := global.GVA_REDIS.Set(context.Background(), dailyKey, marshal, 0).Err()
+		if err!=nil {
+			global.GVA_LOG.Error("set QueryDailyBase value to redis error",zap.Error(err))
+		}
+		return baseInfo
+	}
+	var data stock.DailyBase
+	err = json.Unmarshal([]byte(result), &data)
+	if err != nil {
+		global.GVA_LOG.Error("Unmarshal redis data error",zap.Error(err))
+	}
+	return data
+}
+
+func queryDailyBaseFromDB(code string,day int) stock.DailyBase{
+	var baseInfo stock.DailyBase
+	err := global.GVA_DB.Where("ts_code = ? and trade_date=?", code,day).First(&baseInfo).Error
+	if err != nil || errors.Is(err, gorm.ErrRecordNotFound) {
+		global.GVA_LOG.Error("queryDailyInfoFromDB error ",zap.Error(err))
+	}
+	return baseInfo
+}
+
 
 func (*StockService) QueryDaily(tsCode string,tradeDate int) stock.Daily{
 	dailyKey := fmt.Sprintf("stockDailyKey:%s:%s",tsCode,string(tradeDate))

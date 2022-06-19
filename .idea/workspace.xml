@@ -2,15 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="832eb2d8-25ac-455c-8296-59ccd8212f46" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/collectors/wallstreet_collector.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xueqiu/tencent.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/collectors/collectors.go" beforeDir="false" afterPath="$PROJECT_DIR$/collectors/collectors.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/v1/stock/stock_api.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/v1/stock/stock_api.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/collectors/stock_collector.go" beforeDir="false" afterPath="$PROJECT_DIR$/collectors/stock_collector.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/global/global.go" beforeDir="false" afterPath="$PROJECT_DIR$/global/global.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log/server_error.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/server_error.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/stock/stock.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/stock/stock.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/stock/stock_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/stock/stock_service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xueqiu/xueqiu.go" beforeDir="false" afterPath="$PROJECT_DIR$/xueqiu/xueqiu.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +27,14 @@
   <component name="GOROOT" url="file://$USER_HOME$/sdk/go1.17.11" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="GoLibraries">
     <option name="indexEntireGoPath" value="false" />
@@ -49,8 +57,13 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/xueqiu" />
     <property name="settings.editor.selected.configurable" value="go.sdk" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/xueqiu" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="go build api.frank.top/stockInfo" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">

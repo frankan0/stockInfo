@@ -1,11 +1,11 @@
 package global
 
 import (
-	"api.frank.top/stockInfo/utils/timer"
 	"api.frank.top/stockInfo/config"
+	"api.frank.top/stockInfo/utils/timer"
 	"github.com/go-redis/redis/v8"
-	"go.uber.org/zap"
 	"github.com/spf13/viper"
+	"go.uber.org/zap"
 	"gorm.io/gorm"
 )
 

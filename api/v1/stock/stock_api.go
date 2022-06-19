@@ -47,6 +47,7 @@ func (s *StockApi) QueryAmplifyVol(c *gin.Context)  {
 		daily := service.ServiceGroupApp.StockService.QueryLatestDaily(data[i].TsCode)
 		dayInfo.Daily = daily
 		dayInfo.BaseInfo = service.ServiceGroupApp.StockService.QueryBaseInfo(data[i].TsCode)
+		dayInfo.DailyBase = service.ServiceGroupApp.StockService.QueryLatestDailyBase(data[i].TsCode)
 		stockLists = append(stockLists, dayInfo)
 	}
 	response.OkWithData(stockLists,c)
@@ -56,4 +57,5 @@ type StockDailyInfo struct {
 	Daily stock.Daily `json:"daily"`
 	BaseInfo stock.BaseInfo `json:"base_info"`
 	Avg stock.AvgVol `json:"avg"`
+	DailyBase stock.DailyBase `json:"daily_base"`
 }

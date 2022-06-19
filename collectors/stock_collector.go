@@ -11,7 +11,7 @@ import (
 
 
 type StockCollector struct {
-	Api xueqiu.XueqiuApi
+	Api xueqiu.TencentApi
 	LoginStatus bool
 }
 
