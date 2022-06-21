@@ -2,6 +2,7 @@ package collectors
 
 import (
 	"api.frank.top/stockInfo/global"
+	"api.frank.top/stockInfo/service"
 	"api.frank.top/stockInfo/xueqiu"
 	"github.com/ShawnRong/tushare-go"
 	"go.uber.org/zap"
@@ -73,7 +74,7 @@ func (sc * StockCollector) InitStockHistoryDailyData(startDate string )  {
 
 func (sc *StockCollector) regTask() {
 
-	global.GVA_Timer.AddTaskByFunc("collectStockDailyDataTask","0 58 21 * * *", func() {
+	global.GVA_Timer.AddTaskByFunc("collectStockDailyDataTask","0 58 16 * * *", func() {
 		sc.start()
 	})
 	global.GVA_LOG.Info("reg task for collectStockDailyDataTask cron:0 30 16 * * *")
@@ -83,6 +84,8 @@ func (sc *StockCollector) start()  {
 	currentTime := time.Now()
 	today := currentTime.Format("20060102")
 	sc.InitStockHistoryDailyData(today)
+	sc.InitStockCurrentInfo()
+	service.ServiceGroupApp.StockService.ComputeAvgVolData()
 }
 
 func (sc * StockCollector) DailyData(tsCode string,startDate string )  {

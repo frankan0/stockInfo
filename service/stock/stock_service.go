@@ -205,21 +205,10 @@ func computeStockAvgVol(tsCode string,days int) {
 	var avg3 = sum3/3
 	var avg5 = sum5/5
 
-	var currentAvgVol stock.AvgVol
-	err := global.GVA_DB.Where("ts_code = ? ", tsCode).Find(&currentAvgVol).Error
-	if errors.Is(err, gorm.ErrRecordNotFound){
-		//update
-		currentAvgVol.AvgFive = avg5
-		currentAvgVol.AvgThree = avg3
-		currentAvgVol.DataTime = time.Now()
-		currentAvgVol.CurrentPrice = currentPrice
-		currentAvgVol.PctChg = pctChg
-		currentAvgVol.TradeDate = tradeDate
-		currentAvgVol.CurrentVol = currentVol
-		global.GVA_DB.Save(&currentAvgVol)
-	}else {
-		//insert
-		avgVol := stock.AvgVol{TsCode: tsCode, AvgThree: avg3, AvgFive: avg5,CurrentVol:currentVol,DataTime:time.Now(),CurrentPrice:currentPrice,PctChg: pctChg,TradeDate: tradeDate}
-		global.GVA_DB.Create(&avgVol)
-	}
+	///var currentAvgVol stock.AvgVol
+	global.GVA_DB.Where("ts_code = ?",tsCode).Delete(&stock.AvgVol{})
+	//insert
+	avgVol := stock.AvgVol{TsCode: tsCode, AvgThree: avg3, AvgFive: avg5,CurrentVol:currentVol,DataTime:time.Now(),CurrentPrice:currentPrice,PctChg: pctChg,TradeDate: tradeDate}
+	global.GVA_DB.Create(&avgVol)
+
 }

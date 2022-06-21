@@ -27,7 +27,7 @@ func main() {
 	}
 	//拉取股票基础数据
 	//stockCollector := new(collectors.StockCollector)
-	//stockCollector.InitStockHistoryDailyData("20220617")
+	//stockCollector.InitStockHistoryDailyData("20220618")
 	//stockCollector.InitStockCurrentInfo()
 	r := gin.Default()
 	publicGroup := r.Group("")
