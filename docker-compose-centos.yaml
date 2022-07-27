@@ -1,13 +1,5 @@
 version: "3"
 
-# 声明一个名为network的networks,subnet为network的子网地址,默认网关是177.7.0.1
-networks:
-  network:
-    ipam:
-      driver: default
-      config:
-        - subnet: '177.7.0.0/16'
-
 # 设置mysql，redis持久化保存
 volumes:
   redis:
@@ -25,9 +17,6 @@ services:
     depends_on:
       - pgsql
       - redis
-    networks:
-      network:
-        ipv4_address: 177.7.0.12
     volumes:
       - /docker/dtapapi/log:/server/log
   pgsql:
@@ -43,9 +32,6 @@ services:
       PGDATA: /var/lib/postgresql/data/pgdata
     volumes:
       - /docker/postgresql/data:/var/lib/postgresql/data/pgdata
-    networks:
-      network:
-        ipv4_address: 177.7.0.13
 
   redis:
     image: redis:6.0.6
@@ -55,6 +41,3 @@ services:
       - '16379:6379'
     volumes:
       - /docker/redis/data:/data
-    networks:
-      network:
-        ipv4_address: 177.7.0.14
