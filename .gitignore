@@ -1,7 +1,3 @@
 
-log/server_error.log
-*.log
-.idea/workspace.xml
-.idea/workspace.xml
-*.log
-*.log
+log/*.log
+.idea/
