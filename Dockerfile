@@ -1,6 +1,6 @@
 FROM golang:alpine as builder
 
-WORKDIR /spiderServer
+WORKDIR /stockInfo
 COPY . .
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories \
     && apk add --no-cache --virtual .build-deps wget git tar \
@@ -13,15 +13,15 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
     && go env -w CGO_ENABLED=0 \
     && go env \
     && go mod tidy \
-    && go build -o spider .
+    && go build -o stockApiServer .
 
 FROM alpine:latest
 
 WORKDIR /spiderServer
 
-COPY --from=builder /spiderServer ./
+COPY --from=builder /stockInfo ./
 COPY --from=builder /usr/share/zoneinfo /usr/share/zoneinfo
-COPY --from=builder /spiderServer/config.docker.yaml ./
+COPY --from=builder /stockInfo/config.docker.yaml ./
 ENV TZ=Asia/Shanghai
 EXPOSE 8000
-ENTRYPOINT ./spider -c config.docker.yaml
+ENTRYPOINT ./stockApiServer -c config.docker.yaml

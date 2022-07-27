@@ -1,0 +1,60 @@
+version: "3"
+
+# 声明一个名为network的networks,subnet为network的子网地址,默认网关是177.7.0.1
+networks:
+  network:
+    ipam:
+      driver: default
+      config:
+        - subnet: '177.7.0.0/16'
+
+# 设置mysql，redis持久化保存
+volumes:
+  redis:
+  pgsql:
+
+services:
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: stockapi-server
+    restart: always
+    ports:
+      - '9000:9000'
+    depends_on:
+      - pgsql
+      - redis
+    networks:
+      network:
+        ipv4_address: 177.7.0.12
+    volumes:
+      - /docker/dtapapi/log:/server/log
+  pgsql:
+    image: dtabapi/pgsql:12
+    container_name: api-postgresql
+    restart: always
+    ports:
+      - "15432:5432"  # host物理直接映射端口为 15432
+    environment:
+      POSTGRES_USER: 'pg-user'
+      POSTGRES_DB: 'dtabapi' # 初始化启动时要创建的数据库的名称
+      POSTGRES_PASSWORD: '3877x1T3#' # root管理员用户密码
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - /docker/postgresql/data:/var/lib/postgresql/data/pgdata
+    networks:
+      network:
+        ipv4_address: 177.7.0.13
+
+  redis:
+    image: redis:6.0.6
+    container_name: dtab-redis # 容器名
+    restart: always
+    ports:
+      - '16379:6379'
+    volumes:
+      - /docker/redis/data:/data
+    networks:
+      network:
+        ipv4_address: 177.7.0.14
